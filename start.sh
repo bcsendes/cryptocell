@@ -3,7 +3,7 @@
 # Start services
 echo Starting services
 service ssh start
-#/etc/init.d/node-red start
+/etc/init.d/node-red start
 
 echo $$
 
@@ -18,6 +18,6 @@ tail -f /dev/null & wait
 # Stop services
 echo Stopping services
 service ssh stop
-#/etc/init.d/node-red stop
+/etc/init.d/node-red stop
 
 exit 0
