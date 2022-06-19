@@ -16,9 +16,10 @@ trap 'trap - TERM; kill -s TERM -- -$$' TERM
 tail -f /dev/null & wait
 
 # Stop services
+echo
 echo Stopping services
 service ssh stop
 /etc/init.d/node-red stop
-gosu postgres pg_ctl -D $PGDATA stop
+echo Terminated successfully
 
 exit 0
