@@ -11,9 +11,9 @@ docker-entrypoint.sh postgres
 #trap 'trap - TERM; kill 0' TERM
 #trap 'trap - INT TERM; kill 0' INT TERM
 
-trap 'trap - TERM; kill -s TERM -- -$$' TERM
+#trap 'trap - TERM; kill -s TERM -- -$$' TERM
 
-tail -f /dev/null & wait
+#tail -f /dev/null & wait
 
 # Stop services
 echo Stopping services
