@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Start services
+echo
 echo Starting services
 service ssh start
 /etc/init.d/node-red start
-
-echo $$
+docker-entrypoint.sh postgres
 
 # -$$: kill process group (parent and children)
 #trap 'trap - TERM; kill 0' TERM
@@ -19,5 +19,6 @@ tail -f /dev/null & wait
 echo Stopping services
 service ssh stop
 /etc/init.d/node-red stop
+gosu postgres pg_ctl -D $PGDATA stop
 
 exit 0
