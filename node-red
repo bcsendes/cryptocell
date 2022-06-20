@@ -27,7 +27,7 @@ USER=root
 # DONT'T CHANGE unless you know what you're doing
 NAME=node-red
 DAEMON=/usr/local/bin/node-red-pi
-OPTIONS="--max-old-space-size=128"
+OPTIONS="--max-old-space-size=256"
 
 if [ -n "$USER_DIR" ];  then
 	OPTIONS="$OPTIONS --userDir=$USER_DIR"
