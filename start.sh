@@ -4,7 +4,7 @@
 echo
 echo Starting services
 service ssh start
-/etc/init.d/node-red start
+/etc/init.d/node-red.sh start
 docker-entrypoint.sh postgres &
 
 # -$$: kill process group (parent and children)
