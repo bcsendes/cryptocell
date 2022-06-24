@@ -19,7 +19,7 @@ tail -f /dev/null & wait
 echo
 echo Stopping services
 service ssh stop
-/etc/init.d/node-red stop
+/etc/init.d/node-red.sh stop
 echo Terminated successfully
 
 exit 0
