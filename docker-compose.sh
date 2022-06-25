@@ -9,6 +9,10 @@ LABEL services="ssh, node-red, postgresql"
 LABEL description="Cryptocell Image"
 
 # Environment variables
+ENV CRYPTO=NONE
+ENV MARKET=USDT
+ENV SYSLOG_IP=10.0.0.2
+ENV SYSLOG_PORT=512
 ENV PATH=/root:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/14/bin
 ENV NODE_PATH=/usr/local/lib/node_modules:/home/cryptogt/.node-red/node_modules
 ENV PGDATA=/var/lib/postgresql/data
@@ -39,6 +43,7 @@ RUN apt-get update \
     && apt-get install -y --assume-yes gpg-agent \
     && apt-get install -y --assume-yes dialog \
     && apt-get install -y --assume-yes apt-utils \
+    && apt-get install -y --assume-yes wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -102,6 +107,9 @@ RUN set -ex; export PYTHONDONTWRITEBYTECODE=1; dpkgArch="$(dpkg --print-architec
 RUN set -eux; dpkg-divert --add --rename --divert "/usr/share/postgresql/postgresql.conf.sample.dpkg" "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"; cp -v /usr/share/postgresql/postgresql.conf.sample.dpkg /usr/share/postgresql/postgresql.conf.sample; ln -sv ../postgresql.conf.sample "/usr/share/postgresql/$PG_MAJOR/"; sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/share/postgresql/postgresql.conf.sample; grep -F "listen_addresses = '*'" /usr/share/postgresql/postgresql.conf.sample
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgresql && chmod 2777 /var/run/postgresql
+
+# Overwrite default Postgresql config script
+RUN sudo wget -O /usr/share/postgresql/postgresql.conf.sample https://raw.githubusercontent.com/bcsendes/cryptocell/main/postgresql.conf
 
 # Create data folders
 #RUN set -eux; $pgdatamain=$(dirname $PGDATA); mkdir -p "$pgdatamain" && chown -R postgres:postgres "$pgdatamain" && chmod 777 "$pgdatamain"
