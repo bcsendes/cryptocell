@@ -1034,85 +1034,68 @@ COMMENT ON VIEW public.$crypto002 IS 'rsx7, rsx14, rsx24, rsi7, rsi14, rsi24';
            
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'AMIGO'::text, 'stepsize'::text, '0.001'::real)
- returning id;
+UPPER('$crypto')::text, 'AMIGO'::text, 'stepsize'::text, '0.001'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'AMIGO'::text, 'maxqty'::text, '900000'::real)
- returning id;
+UPPER('$crypto')::text, 'AMIGO'::text, 'maxqty'::text, '900000'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'AMIGO'::text, 'minnotional'::text, '10'::real)
- returning id;
+UPPER('$crypto')::text, 'AMIGO'::text, 'minnotional'::text, '10'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'AMIGO'::text, 'minqty'::text, '0.001'::real)
- returning id;
+UPPER('$crypto')::text, 'AMIGO'::text, 'minqty'::text, '0.001'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'AMIGO'::text, 'minprice'::text, '0.001'::real)
- returning id;
+UPPER('$crypto')::text, 'AMIGO'::text, 'minprice'::text, '0.001'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'AMIGO'::text, 'maxprice'::text, '10000'::real)
- returning id;
+UPPER('$crypto')::text, 'AMIGO'::text, 'maxprice'::text, '10000'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'AMIGO'::text, 'ticksize'::text, '0.001'::real)
- returning id;
+UPPER('$crypto')::text, 'AMIGO'::text, 'ticksize'::text, '0.001'::real);
 
 INSERT INTO public.settings (
 modul, symbol, paramname, paramvalue) VALUES (
-'AMIGO'::text, UPPER('$crypto')::text, 'enabled'::text, '0'::real)
- returning id;
+'AMIGO'::text, UPPER('$crypto')::text, 'enabled'::text, '0'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'BACKTEST'::text, 'starttime'::text, '1.5147648e+09'::real)
- returning id;
+UPPER('$crypto')::text, 'BACKTEST'::text, 'starttime'::text, '1.5147648e+09'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue, paramtag1) VALUES (
-UPPER('$crypto')::text, 'GRAFANA'::text, 'view002'::text, '1'::real, '$crypto002'::text)
- returning id;
+UPPER('$crypto')::text, 'GRAFANA'::text, 'view002'::text, '1'::real, '$crypto002'::text);
  
 INSERT INTO public.settings (
 modul, symbol, paramname, paramvalue, paramtag1) VALUES (
-'GRAFANA'::text, UPPER('$crypto')::text, 'view001'::text, '1'::real, '$crypto001'::text)
- returning id;
+'GRAFANA'::text, UPPER('$crypto')::text, 'view001'::text, '1'::real, '$crypto001'::text);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'QUERY'::text, 'longcandleheigth'::text, '10'::real)
- returning id;
+UPPER('$crypto')::text, 'QUERY'::text, 'longcandleheigth'::text, '10'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'QUERY'::text, 'volumejump'::text, '2'::real)
- returning id;
+UPPER('$crypto')::text, 'QUERY'::text, 'volumejump'::text, '2'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'QUERY'::text, 'longtailrate'::text, '2'::real)
- returning id;
+UPPER('$crypto')::text, 'QUERY'::text, 'longtailrate'::text, '2'::real);
  
 INSERT INTO public.settings (
 symbol, modul, paramname, paramvalue) VALUES (
-UPPER('$crypto')::text, 'QUERY'::text, 'orderbooklimit'::text, '0.090'::real)
- returning id;
+UPPER('$crypto')::text, 'QUERY'::text, 'orderbooklimit'::text, '0.090'::real);
 
 INSERT INTO public.settings (
 modul, symbol, paramname, paramvalue, paramtag2) VALUES (
-'HITMAN'::text, UPPER('$crypto')::text, 'timestage1'::text, '4'::real, '2021.10.23'::text)
- returning id;
+'HITMAN'::text, UPPER('$crypto')::text, 'timestage1'::text, '4'::real, '2021.10.23'::text);
 
 INSERT INTO public.settings (
 modul, symbol, paramname, paramvalue, paramtag2) VALUES (
-'HITMAN'::text, UPPER('$crypto')::text, 'timestage2'::text, '28'::real, '2021.10.23'::text)
- returning id;
+'HITMAN'::text, UPPER('$crypto')::text, 'timestage2'::text, '28'::real, '2021.10.23'::text);
