@@ -88,7 +88,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y tzdata
 
 RUN unlink /etc/localtime
-RUN ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
+RUN ln -s /usr/share/zoneinfo/UTC /etc/localtime
 
 RUN set -ex; if ! command -v gpg > /dev/null; then apt-get update; apt-get install -y --no-install-recommends gnupg dirmngr ; rm -rf /var/lib/apt/lists/*; fi
 
