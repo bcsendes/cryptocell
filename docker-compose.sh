@@ -54,7 +54,7 @@ RUN sudo wget -O /etc/profile.d/02-env-fix.sh https://raw.githubusercontent.com/
 
 # Adding users and groups
 RUN set -eux; groupadd -r postgres --gid=999; useradd -p .YB51Bqze2fDo -r -g postgres --uid=999 --home-dir=/var/lib/postgresql --shell=/bin/bash postgres; mkdir -p /var/lib/postgresql; chown -R postgres:postgres /var/lib/postgresql 
-RUN useradd -m -p .YB51Bqze2fDo -s /bin/bash cryptogt && usermod -a -G sudo postgres && usermod -a -G sudo cryptogt
+RUN useradd -m -p .YB51Bqze2fDo -s /bin/bash cryptogt && usermod -a -G sudo postgres && usermod -a -G sudo cryptogt && usermod -a -G postgres cryptogt
 
 # Finalizing node-red setup
 RUN echo 'node-red log init' >> /var/log/node-red.log && sudo chown cryptogt /var/log/node-red.log && mkdir –p /home/cryptogt/.node-red && sudo chown cryptogt /home/cryptogt/.node-red
@@ -114,8 +114,8 @@ RUN sudo wget -O /usr/share/postgresql/postgresql.conf.sample https://raw.github
 # Create data folders
 #RUN set -eux; $pgdatamain=$(dirname $PGDATA); mkdir -p "$pgdatamain" && chown -R postgres:postgres "$pgdatamain" && chmod 777 "$pgdatamain"
 #RUN set -eux; $pgdatatbsp=$(dirname $PGDATA)"/tbsp"; mkdir -p "$pgdatatbsp" && chown -R postgres:postgres "$pgdatatbsp" && chmod 777 "$pgdatatbsp"
-RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA"
-RUN mkdir -p "$PGTBSP" && chown -R postgres:postgres "$PGTBSP" && chmod 777 "$PGTBSP"
+RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 770 "$PGDATA"
+RUN mkdir -p "$PGTBSP" && chown -R postgres:postgres "$PGTBSP" && chmod 770 "$PGTBSP"
 
 EXPOSE 22 1880 5432
 
