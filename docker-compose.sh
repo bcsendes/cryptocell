@@ -114,8 +114,8 @@ RUN sudo wget -O /usr/share/postgresql/postgresql.conf.sample https://raw.github
 # Create data folders
 #RUN set -eux; $pgdatamain=$(dirname $PGDATA); mkdir -p "$pgdatamain" && chown -R postgres:postgres "$pgdatamain" && chmod 777 "$pgdatamain"
 #RUN set -eux; $pgdatatbsp=$(dirname $PGDATA)"/tbsp"; mkdir -p "$pgdatatbsp" && chown -R postgres:postgres "$pgdatatbsp" && chmod 777 "$pgdatatbsp"
-RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 770 "$PGDATA"
-RUN mkdir -p "$PGTBSP" && chown -R postgres:postgres "$PGTBSP" && chmod 770 "$PGTBSP"
+RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 750 "$PGDATA"
+RUN mkdir -p "$PGTBSP" && chown -R postgres:postgres "$PGTBSP" && chmod 750 "$PGTBSP"
 
 EXPOSE 22 1880 5432
 
