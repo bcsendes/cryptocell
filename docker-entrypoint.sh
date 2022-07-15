@@ -355,7 +355,7 @@ _main() {
 
 			docker_temp_server_stop
 			unset PGPASSWORD
-			chmod 750 "$PGDATA"
+			chmod -R 750 "$PGDATA"
 
 			echo
 			echo 'PostgreSQL init process complete; ready for start up.'
