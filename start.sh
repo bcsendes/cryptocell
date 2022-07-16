@@ -13,7 +13,7 @@ if [ -f /home/cryptogt/settings.js ]; then
     unlink /home/cryptogt/settings.js
 fi
 ln -s /home/cryptogt/.node-red/settings.js /home/cryptogt/settings.js
-if [ -f /home/cryptogt/data ]; then 
+if [ -d /home/cryptogt/data ]; then 
     unlink /home/cryptogt/data
 fi
 ln -s "$PGVOLUME" /home/cryptogt/data
