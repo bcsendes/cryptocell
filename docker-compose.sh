@@ -48,13 +48,14 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Creating startup script, download from Github: https://github.com/bcsendes/cryptocell
-RUN sudo wget -O /usr/local/bin/start.sh https://raw.githubusercontent.com/bcsendes/cryptocell/main/start.sh && chmod +x /usr/local/bin/start.sh
-RUN sudo wget -O /usr/local/bin/docker-entrypoint.sh https://raw.githubusercontent.com/bcsendes/cryptocell/main/docker-entrypoint.sh && chmod +x /usr/local/bin/docker-entrypoint.sh
-RUN sudo wget -O /etc/profile.d/02-env-fix.sh https://raw.githubusercontent.com/bcsendes/cryptocell/main/02-env-fix.sh && chmod +x /etc/profile.d/02-env-fix.sh
+RUN sudo wget -O /usr/local/bin/start.sh https://raw.githubusercontent.com/bcsendes/cryptocell/main/start.sh && chmod 775 /usr/local/bin/start.sh
+RUN sudo wget -O /usr/local/bin/docker-entrypoint.sh https://raw.githubusercontent.com/bcsendes/cryptocell/main/docker-entrypoint.sh && chmod 775 /usr/local/bin/docker-entrypoint.sh
+RUN sudo wget -O /etc/profile.d/02-env-fix.sh https://raw.githubusercontent.com/bcsendes/cryptocell/main/02-env-fix.sh && chmod 775 /etc/profile.d/02-env-fix.sh
 
 # Adding users and groups
-RUN set -eux; groupadd -r postgres --gid=999; useradd -p .YB51Bqze2fDo -r -g postgres --uid=999 --home-dir=/var/lib/postgresql --shell=/bin/bash postgres; mkdir -p /var/lib/postgresql; chown -R postgres:postgres /var/lib/postgresql 
-RUN useradd -m -p .YB51Bqze2fDo -s /bin/bash cryptogt && usermod -a -G sudo postgres && usermod -a -G sudo cryptogt && usermod -a -G postgres cryptogt
+RUN set -eux; groupadd -r postgres --gid=999; useradd -p .YB51Bqze2fDo -r -g postgres --uid=999 --home-dir=/var/lib/postgresql --shell=/bin/bash postgres; mkdir -p "$PGVOLUME"; chown -R postgres:postgres "$PGVOLUME"; chmod -R 750 "$PGVOLUME"
+RUN useradd -m -p .YB51Bqze2fDo -s /bin/bash cryptogt && usermod -a -G sudo postgres && usermod -a -G sudo cryptogt && usermod -a -G postgres cryptogt && usermod -a -G root cryptogt
+RUN ln -s /usr/local/bin /home/cryptogt/bin && ln -s /etc/profile.d /home/cryptogt/autorun
 
 # Finalizing node-red setup
 RUN echo 'node-red log init' >> /var/log/node-red.log && sudo chown cryptogt /var/log/node-red.log && mkdir –p /home/cryptogt/.node-red && sudo chown cryptogt /home/cryptogt/.node-red
