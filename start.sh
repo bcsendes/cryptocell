@@ -1,8 +1,19 @@
 #!/bin/bash
 
+# ##############
 # Start services
 echo
 echo Starting services
+# Setting up links for easier management
+if [ -f /home/cryptogt/postgresql.conf ]; then 
+    unlink /home/cryptogt/postgresql.conf 
+fi
+ln -s /var/lib/postgresql/data/postgresql.conf /home/cryptogt/postgresql.conf
+if [ -f /home/cryptogt/settings.js ]; then 
+    unlink /home/cryptogt/settings.js
+fi
+ln -s /home/cryptogt/.node-red/settings.js /home/cryptogt/settings.js
+# Starting services
 service ssh start
 /etc/init.d/node-red.sh start
 docker-entrypoint.sh postgres &
